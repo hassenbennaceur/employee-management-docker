@@ -6,8 +6,8 @@ pipeline {
     /* Variables globales */
     environment {
         // Nom local de l'image 
-        backend-image = "backend_cont"
-        frontend-image = "front_cont"
+        backend_image = "backend_cont"
+        frontend_image = "front_cont"
         
         // Repo folders
         
@@ -39,7 +39,7 @@ pipeline {
                 /* On construit l'image Docker en tag 'latest'
                    Le Dockerfile doit être à la racine du repo */
                 sh """
-                    docker build -t ${backend-image}:v1.0 ${backendF}   
+                    docker build -t ${backend_image}:v1.0 ${backendF}   
                 """
             }
         }
@@ -67,8 +67,8 @@ pipeline {
 
                         // retag l'image locale avec ton namespace Docker Hub
                         sh """
-                            docker tag ${backend-image}:v1.0 ${DOCKERHUB_USER}/${backend-image}:v1.0
-                            docker push ${DOCKERHUB_USER}/${backend-image}:v1.0
+                            docker tag ${backend_image}:v1.0 ${DOCKERHUB_USER}/${backend_image}:v1.0
+                            docker push ${DOCKERHUB_USER}/${backend_image}:v1.0
                         """
 
                         // logout 
@@ -85,7 +85,7 @@ pipeline {
                 /* On construit l'image Docker en tag 'latest'
                    Le Dockerfile doit être à la racine du repo */
                 sh """
-                    docker build -t ${frontend-image}:v1.0 ${frontendF}
+                    docker build -t ${frontend_image}:v1.0 ${frontendF}
                 """
             }
         }
@@ -113,8 +113,8 @@ pipeline {
 
                         // retag l'image locale avec ton namespace Docker Hub
                         sh """
-                            docker tag ${frontend-image}:v1.0 ${DOCKERHUB_USER}/${frontend-image}:v1.0
-                            docker push ${DOCKERHUB_USER}/${frontend-image}:v1.0
+                            docker tag ${frontend_image}:v1.0 ${DOCKERHUB_USER}/${frontend_image}:v1.0
+                            docker push ${DOCKERHUB_USER}/${frontend_image}:v1.0
                         """
 
                         // logout 
